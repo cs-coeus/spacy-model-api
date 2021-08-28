@@ -8,6 +8,23 @@ Request: `None`
 
 Response: `'OK'` with HTTP Status `200`
 
+### `POST /predict/sentences/count`
+Request:
+`"data"` is a string of text to process.
+```json
+{
+  "data": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+}
+```
+
+Response:
+`"result"` is a number represents amount of sentences in text.
+```json
+{
+  "result": 1
+}
+```
+
 ### `POST /predict/pos`
 Request:
 `"data"` is a string of text to process.

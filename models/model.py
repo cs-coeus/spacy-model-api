@@ -23,6 +23,10 @@ class ModelSpacy(ModelInterface):
         return ModelSpacy.get_spacy_instance(input)
 
     @staticmethod
+    def get_amount_of_sentences(text):
+        return len(list(ModelSpacy.predict(text).sents))
+
+    @staticmethod
     def get_part_of_speech_dictionary(text):
         dictionary = dict()
         for token in ModelSpacy.predict(text):
