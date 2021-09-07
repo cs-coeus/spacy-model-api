@@ -49,14 +49,27 @@ Request:
 `"data"` is a string of text to process.
 ```json
 {
-  "data": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+  "data": "Thailand is a country in southeast Asia."
 }
 ```
 Response:
-`"result"` is an array of noun chunks.
+`"result"` is an array of noun chunks with its own entity type.
 ```json
 {
-  "result": ["Noun chunk 1", "Noun chunk 2"]
+    "result": [
+        [
+            "Thailand",
+            "GPE"
+        ],
+        [
+            "a country",
+            ""
+        ],
+        [
+            "southeast Asia",
+            "LOC"
+        ]
+    ]
 }
 ```
 
