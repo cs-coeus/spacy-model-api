@@ -44,7 +44,7 @@ Response:
 }
 ```
 
-### `POST /predict/noun-chunks`
+### `POST /predict/noun-chunks-with-entity-type`
 Request:
 `"data"` is a string of text to process.
 ```json
