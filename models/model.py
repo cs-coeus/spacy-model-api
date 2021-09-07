@@ -10,7 +10,7 @@ class ModelSpacy(ModelInterface):
     def __init__(self):
         if torch.cuda.is_available():
             spacy.require_gpu()
-        ModelSpacy.nlp = spacy.load('en_core_web_sm')
+        ModelSpacy.nlp = spacy.load('en_core_web_lg')
         ModelSpacy.nlp.add_pipe('merge_entities', last=True)
         ModelSpacy.stop_words = set(stopwords.words('english'))
 
@@ -34,10 +34,10 @@ class ModelSpacy(ModelInterface):
         return dictionary
 
     @staticmethod
-    def get_noun_chunk_array(text):
+    def get_noun_chunk_and_entity_type_array(text):
         dictionary = dict()
         for chunk in ModelSpacy.predict(text).noun_chunks:
             if chunk.text not in ModelSpacy.stop_words:
-                dictionary[chunk.text] = 1
-        array = list(dictionary.keys())
+                dictionary[chunk.text] = chunk.root.ent_type_
+        array = list(dictionary.items())
         return array

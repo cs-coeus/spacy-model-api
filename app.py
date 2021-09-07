@@ -18,7 +18,7 @@ def health_check():
 
 
 @app.route('/predict/sentences/count', methods=['POST'])
-def predict_pos():
+def predict_count_sentence():
     if request.method == 'POST' and request.json is not None:
         if is_production:
             token = request.headers.get('Authorization').split(' ')[1]
@@ -51,8 +51,8 @@ def predict_pos():
     return jsonify({"error": "Data is invalid or not exist"}), 400
 
 
-@app.route('/predict/noun-chunks', methods=['POST'])
-def predict_noun_chunks():
+@app.route('/predict/noun-chunks-with-entity-type', methods=['POST'])
+def predict_noun_chunks_with_entity_type():
     if request.method == 'POST' and request.json is not None:
         if is_production:
             token = request.headers.get('Authorization').split(' ')[1]
@@ -61,7 +61,7 @@ def predict_noun_chunks():
         data = request.json['data']
         if data is not None:
             try:
-                result = model.get_noun_chunk_array(data)
+                result = model.get_noun_chunk_and_entity_type_array(data)
                 return jsonify({"result": result})
             except:
                 return jsonify({"error": "Data format wrong"}), 400
