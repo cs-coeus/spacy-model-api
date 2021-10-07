@@ -30,7 +30,7 @@ class ModelSpacy(ModelInterface):
     def get_part_of_speech_dictionary(text):
         dictionary = dict()
         for token in ModelSpacy.predict(text):
-            dictionary[token] = token.pos_
+            dictionary[str(token)] = token.pos_
         return dictionary
 
     @staticmethod
