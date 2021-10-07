@@ -29,7 +29,9 @@ def predict_count_sentence():
             try:
                 result = model.get_amount_of_sentences(data)
                 return jsonify({"result": result})
-            except:
+            except Exception as e:
+                print(data)
+                print(e)
                 return jsonify({"error": "Data format wrong"}), 400
     return jsonify({"error": "Data is invalid or not exist"}), 400
 
@@ -46,7 +48,9 @@ def predict_pos():
             try:
                 result = model.get_part_of_speech_dictionary(data)
                 return jsonify({"result": result})
-            except:
+            except Exception as e:
+                print(data)
+                print(e)
                 return jsonify({"error": "Data format wrong"}), 400
     return jsonify({"error": "Data is invalid or not exist"}), 400
 
@@ -63,6 +67,8 @@ def predict_noun_chunks_with_entity_type():
             try:
                 result = model.get_noun_chunk_and_entity_type_array(data)
                 return jsonify({"result": result})
-            except:
+            except Exception as e:
+                print(data)
+                print(e)
                 return jsonify({"error": "Data format wrong"}), 400
     return jsonify({"error": "Data is invalid or not exist"}), 400
