@@ -36,6 +36,25 @@ def predict_count_sentence():
     return jsonify({"error": "Data is invalid or not exist"}), 400
 
 
+@app.route('/predict/sentences', methods=['POST'])
+def predict_sentences():
+    if request.method == 'POST' and request.json is not None:
+        if is_production:
+            token = request.headers.get('Authorization').split(' ')[1]
+            if token != authentication_token:
+                return jsonify({"error": "Unauthorized request"}), 403
+        data = request.json['data']
+        if data is not None:
+            try:
+                result = model.get_sentences(data)
+                return jsonify({"result": result})
+            except Exception as e:
+                print(data, flush=True)
+                print(e, flush=True)
+                return jsonify({"error": "Data format wrong"}), 400
+    return jsonify({"error": "Data is invalid or not exist"}), 400
+
+
 @app.route('/predict/pos', methods=['POST'])
 def predict_pos():
     if request.method == 'POST' and request.json is not None:
