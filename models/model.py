@@ -27,6 +27,12 @@ class ModelSpacy(ModelInterface):
         return len(list(ModelSpacy.predict(text).sents))
 
     @staticmethod
+    def get_sentences(text):
+        sentences = list(ModelSpacy.predict(text).sents)
+        result = [sent.text for sent in sentences]
+        return result
+
+    @staticmethod
     def get_part_of_speech_dictionary(text):
         dictionary = dict()
         for token in ModelSpacy.predict(text):

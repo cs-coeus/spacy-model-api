@@ -25,6 +25,26 @@ Response:
 }
 ```
 
+### `POST /predict/sentences`
+Request:
+`"data"` is a string of text to process.
+```json
+{
+  "data": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. hello i am new."
+}
+```
+
+Response:
+`"result"` is a array of text sentence.
+```json
+{
+    "result": [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "hello i am new."
+    ]
+}
+```
+
 ### `POST /predict/pos`
 Request:
 `"data"` is a string of text to process.
